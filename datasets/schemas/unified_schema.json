@@ -1,0 +1,18 @@
+{
+  "keep_columns": [
+    "flow_duration",
+    "total_fwd_packets",
+    "total_bwd_packets",
+    "total_length_fwd",
+    "total_length_bwd",
+    "packet_length_mean",
+    "packet_length_std",
+    "flow_bytes_per_sec",
+    "flow_packets_per_sec",
+    "protocol",
+    "flags"
+  ],
+
+  "label_column": "label",
+  "attack_category_column": "attack_cat"
+}
