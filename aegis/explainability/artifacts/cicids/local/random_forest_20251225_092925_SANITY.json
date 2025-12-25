@@ -1,0 +1,39 @@
+{
+  "alert_id": "SANITY-CICIDS-001",
+  "prediction": "BENIGN",
+  "confidence": 0.87,
+  "top_contributors": [
+    {
+      "feature": "Destination Port",
+      "impact": 0.075643,
+      "direction": "increase_risk"
+    },
+    {
+      "feature": "Idle Std",
+      "impact": 0.024428,
+      "direction": "increase_risk"
+    },
+    {
+      "feature": "Bwd Packet Length Min",
+      "impact": -0.018231,
+      "direction": "decrease_risk"
+    },
+    {
+      "feature": "Fwd Packet Length Min",
+      "impact": -0.017403,
+      "direction": "decrease_risk"
+    },
+    {
+      "feature": "RST Flag Count",
+      "impact": 0.016248,
+      "direction": "increase_risk"
+    }
+  ],
+  "summary": "High influence from Destination Port, Idle Std increased attack likelihood. Features like Bwd Packet Length Min, Fwd Packet Length Min reduced risk score.",
+  "_meta": {
+    "dataset": "cicids",
+    "model": "random_forest",
+    "scope": "local",
+    "created_at": "20251225_092925"
+  }
+}

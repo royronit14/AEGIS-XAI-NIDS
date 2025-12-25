@@ -1,0 +1,53 @@
+{
+  "dataset": "CICIDS",
+  "model": "RandomForest",
+  "top_global_features": [
+    {
+      "feature": "Destination Port",
+      "mean_shap_impact": 0.00801
+    },
+    {
+      "feature": "Fwd Packet Length Mean",
+      "mean_shap_impact": 0.006222
+    },
+    {
+      "feature": "Fwd Packet Length Std",
+      "mean_shap_impact": 0.00257
+    },
+    {
+      "feature": "Total Backward Packets",
+      "mean_shap_impact": 0.001534
+    },
+    {
+      "feature": "Total Fwd Packets",
+      "mean_shap_impact": 0.001324
+    },
+    {
+      "feature": "Bwd Packet Length Max",
+      "mean_shap_impact": 0.001307
+    },
+    {
+      "feature": "Total Length of Bwd Packets",
+      "mean_shap_impact": 0.001288
+    },
+    {
+      "feature": "Total Length of Fwd Packets",
+      "mean_shap_impact": 0.001283
+    },
+    {
+      "feature": "Flow Duration",
+      "mean_shap_impact": 0.001261
+    },
+    {
+      "feature": "Fwd Packet Length Max",
+      "mean_shap_impact": 0.001136
+    }
+  ],
+  "interpretation": "Model decisions are primarily influenced by traffic volume, connection behavior, and destination activity features such as Destination Port, Fwd Packet Length Mean, Fwd Packet Length Std, Total Backward Packets, Total Fwd Packets",
+  "_meta": {
+    "dataset": "cicids",
+    "model": "random_forest",
+    "scope": "global",
+    "created_at": "20251225_092925"
+  }
+}
