@@ -1,9 +1,13 @@
 # aegis/api/main.py
 
+# uvicorn aegis.api.main:app --reload   (To run it babua)
+
+
 from fastapi import FastAPI
 import joblib
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from fastapi.middleware.cors import CORSMiddleware
 
 from aegis.api.schemas import ExplainRequest, ExplainResponse
 from aegis.data.normalizer import normalize_dataset
@@ -12,6 +16,14 @@ from aegis.explainability.local import LocalExplainer
 from aegis.drift.feature_drift import compute_feature_drift
 
 app = FastAPI(title="AEGIS Explainability API")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # allow frontend
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 # -----------------------------
 # LOAD DATA & MODEL (CICIDS demo)

@@ -17,7 +17,9 @@ def compute_feature_drift(X_train, X_new, threshold=0.25):
                 "severe_drift" if psi > threshold
                 else "moderate_drift" if psi > 0.1
                 else "no_drift"
-            )
+            ),
+            "baseline_rows": len(X_train),
+            "current_rows": len(X_new)
         })
 
     return pd.DataFrame(drift_report).sort_values(

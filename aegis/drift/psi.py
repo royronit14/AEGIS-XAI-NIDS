@@ -16,6 +16,8 @@ def calculate_psi(expected, actual, bins=10):
     # Constant feature → no drift
     if expected.nunique() <= 1:
         return 0.0
+    if not pd.api.types.is_numeric_dtype(expected):
+        return 0.0
 
     quantiles = np.linspace(0, 100, bins + 1)
     breakpoints = np.percentile(expected, quantiles)
@@ -40,6 +42,10 @@ def calculate_psi(expected, actual, bins=10):
         breakpoints,
         duplicates="drop"
     ).value_counts(normalize=True)
+
+    expected_counts, actual_counts = expected_counts.align(
+    actual_counts, fill_value=0
+    )
 
     psi = np.sum(
         (actual_counts - expected_counts)
