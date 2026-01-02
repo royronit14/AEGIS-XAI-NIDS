@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: #e5e7eb;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: #1e293b;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+button {
+    padding: 6px 12px;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+pre {
+    background: #020617;
+    padding: 10px;
+    margin-top: 10px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    border-bottom: 1px solid #334155;
+    text-align: left;
+}
+
+.status-no_drift {
+    color: #22c55e;
+}
+
+.status-moderate_drift {
+    color: #eab308;
+}
+
+.status-severe_drift {
+    color: #ef4444;
+}
