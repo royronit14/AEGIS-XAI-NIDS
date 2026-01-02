@@ -14,6 +14,12 @@ from aegis.data.normalizer import normalize_dataset
 from aegis.explainability.engine import XAIEngine
 from aegis.explainability.local import LocalExplainer
 from aegis.drift.feature_drift import compute_feature_drift
+from aegis.mlops.drift_policy import apply_drift_policy
+from aegis.mlops.logger import log_event
+from aegis.mlops.alert_manager import AlertManager
+from aegis.mlops.model_health import ModelHealth
+from aegis.mlops.versioning import VersionRegistry
+
 
 app = FastAPI(title="AEGIS Explainability API")
 app.add_middleware(
@@ -74,10 +80,74 @@ def explain_local(req: ExplainRequest):
         alert_id=f"{req.dataset.upper()}-{req.index}"
     )
 
+    log_event(
+        event_type="explanation",
+        payload={
+            "dataset": req.dataset,
+            "alert_id": explanation["alert_id"],
+            "prediction": explanation["prediction"],
+            "confidence": explanation["confidence"]
+        }
+    )
+
+    explanation["metadata"] = version_registry.get()
+
     return explanation
+
+
+alert_manager = AlertManager()  # Created a Global Manager
+@app.get("/alerts")
+def list_alerts(state: str | None = None):
+    return alert_manager.list_alerts(state)
+@app.post("/alerts/{alert_id}/state")
+def update_alert_state(alert_id: str, new_state: str):
+    return alert_manager.update_state(alert_id, new_state)
+
+
+model_health = ModelHealth()  #Created a Global Instance Boi
+@app.get("/model/health")   # Added a Model Health Endpoint
+def get_model_health():
+    return model_health.__dict__
+
+
+version_registry = VersionRegistry()   #Creating Registry
+version_registry.register(
+    model_version="rf_v1",
+    dataset_version="cicids_v1_normalized"
+)
 
 
 @app.get("/drift/features")
 def drift_features():
     drift_df = compute_feature_drift(X_train, X_test)
-    return drift_df.head(10).to_dict(orient="records")
+
+    policy_result = apply_drift_policy(
+        drift_df,
+        dataset=DATASET_NAME,
+        model_version="rf_v1"
+    )
+
+    log_event(
+        event_type="drift_check",
+        payload={
+            "dataset": DATASET_NAME,
+            "alerts": policy_result["alerts"],
+            "retrain_required": policy_result["retrain_required"]
+        }
+    )
+
+    created_alerts = []
+
+    for alert in policy_result["alerts"]:
+        created = alert_manager.create_alert(alert)
+        created_alerts.append(created)
+
+    health_status = model_health.evaluate(policy_result)
+    
+    return {
+        "metadata": version_registry.get(),
+        "drift_metrics": drift_df.head(10).to_dict(orient="records"),
+        "alerts": created_alerts,
+        "retrain_required": policy_result["retrain_required"],
+        "model_health": health_status
+    }
