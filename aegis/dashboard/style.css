@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Segoe UI", Arial, sans-serif;
     background: #0f172a;
     color: #e5e7eb;
     padding: 20px;
@@ -7,57 +7,114 @@ body {
 
 h1 {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
+    font-weight: 600;
 }
 
 .card {
     background: #1e293b;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
+    padding: 22px;
+    margin-bottom: 22px;
+    border-radius: 10px;
+    box-shadow: 0 0 0 1px #334155;
+}
+
+.card.center {
+    text-align: center;
+}
+
+h2 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.2rem;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 6px;
+}
+
+input {
+    padding: 6px;
+    width: 120px;
+    background: #020617;
+    color: #e5e7eb;
+    border: 1px solid #334155;
+    border-radius: 4px;
 }
 
 button {
-    padding: 6px 12px;
-    margin-top: 8px;
+    padding: 7px 14px;
+    margin-top: 10px;
+    margin-right: 8px;
     cursor: pointer;
+    background: #2563eb;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+button.danger {
+    background: #dc2626;
+}
+
+.btn-row {
+    margin-bottom: 12px;
 }
 
 pre {
     background: #020617;
-    padding: 10px;
-    margin-top: 10px;
+    padding: 12px;
+    margin-top: 12px;
     overflow-x: auto;
+    border-radius: 6px;
+    font-size: 0.85rem;
 }
 
 table {
     width: 100%;
-    margin-top: 10px;
+    margin-top: 14px;
     border-collapse: collapse;
 }
 
 th, td {
-    padding: 8px;
+    padding: 10px;
     border-bottom: 1px solid #334155;
     text-align: left;
+    font-size: 0.9rem;
+}
+
+th {
+    color: #93c5fd;
 }
 
 .status-no_drift {
     color: #22c55e;
+    font-weight: 600;
 }
 
 .status-moderate_drift {
     color: #eab308;
+    font-weight: 600;
 }
 
 .status-severe_drift {
     color: #ef4444;
+    font-weight: 600;
 }
+
 #drift-history-chart,
 #performance-history-chart,
-#retraining-history-chart {
+#retraining-history-chart,
+#alert-gauge {
     margin-top: 15px;
     background: #020617;
-    padding: 10px;
-    border-radius: 6px;
+    padding: 12px;
+    border-radius: 8px;
 }

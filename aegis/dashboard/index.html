@@ -11,28 +11,45 @@
 
     <h1>🛡️ AEGIS SOC Dashboard</h1>
 
-    <!-- System Health -->
-    <section class="card">
+    <!-- =============================
+         TOP STATUS OVERVIEW
+    ============================= -->
+
+    <section class="card center">
         <h2>System Health</h2>
         <p id="health-status">Checking...</p>
     </section>
 
-    <!-- Local Explanation -->
+    <section class="card center">
+        <h2>🚨 Alert Index (Overall Risk)</h2>
+        <div id="alert-gauge"></div>
+    </section>
+
+    <!-- =============================
+         ALERT EXPLANATION
+    ============================= -->
+
     <section class="card">
-        <h2>Alert Explanation</h2>
+        <h2>🔍 Alert Explanation (Local XAI)</h2>
 
-        <label>Alert Index:</label>
+        <label for="alertIndex">Sample Index:</label>
         <input type="number" id="alertIndex" value="5" />
-        <button type="button" onclick="getExplanation()">Explain Alert</button>
-
+        <button onclick="getExplanation()">Explain Alert</button>
 
         <pre id="explain-output"></pre>
     </section>
 
-    <!-- Drift Monitoring -->
+    <!-- =============================
+         DRIFT MONITOR
+    ============================= -->
+
     <section class="card">
-        <h2>Feature Drift Monitor</h2>
-        <button onclick="getDrift()">Check Drift</button>
+        <h2>🧭 Feature Drift Monitor</h2>
+
+        <div class="btn-row">
+            <button onclick="getDrift(false)">Check Drift</button>
+            <button class="danger" onclick="getDrift(true)">🧪 Simulate Drift</button>
+        </div>
 
         <table id="drift-table">
             <thead>
@@ -45,8 +62,9 @@
             <tbody></tbody>
         </table>
     </section>
+
     <!-- =============================
-     Trends & History (Step-6)
+         HISTORY & TRENDS
     ============================= -->
 
     <section class="card">
@@ -56,7 +74,7 @@
     </section>
 
     <section class="card">
-        <h2>📉 Model Performance History</h2>
+        <h2>📉 Model Health History</h2>
         <button onclick="loadPerformanceHistory()">Load Performance</button>
         <div id="performance-history-chart"></div>
     </section>
@@ -69,8 +87,7 @@
 
     <!-- Plotly -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-
     <script src="app.js"></script>
-</body>
 
+</body>
 </html>
