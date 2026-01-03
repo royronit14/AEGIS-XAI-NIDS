@@ -53,3 +53,11 @@ th, td {
 .status-severe_drift {
     color: #ef4444;
 }
+#drift-history-chart,
+#performance-history-chart,
+#retraining-history-chart {
+    margin-top: 15px;
+    background: #020617;
+    padding: 10px;
+    border-radius: 6px;
+}

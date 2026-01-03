@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // LOCAL EXPLANATION
 // -----------------------------
 function getExplanation() {
+    event?.preventDefault?.();
     const index = document.getElementById("alertIndex").value;
 
     fetch(`${API_BASE}/explain/local`, {
@@ -52,7 +53,7 @@ function getDrift() {
             const tbody = document.querySelector("#drift-table tbody");
             tbody.innerHTML = "";
 
-            data.forEach(row => {
+            data.drift_metrics.forEach(row => {
                 const tr = document.createElement("tr");
                 tr.innerHTML = `
                     <td>${row.feature}</td>
@@ -62,4 +63,76 @@ function getDrift() {
                 tbody.appendChild(tr);
             });
         });
+}
+
+// =============================
+// STEP-6: DRIFT HISTORY
+// =============================
+function loadDriftHistory() {
+    fetch(`${API_BASE}/history/drift`)
+        .then(res => res.json())
+        .then(data => {
+            const x = data.map(d => d.timestamp);
+            const y = data.map(d => d.psi);
+
+            Plotly.newPlot("drift-history-chart", [{
+                x,
+                y,
+                mode: "lines+markers",
+                name: "PSI"
+            }], {
+                title: "Drift Trend Over Time",
+                yaxis: { title: "PSI Score" }
+            });
+        })
+        .catch(err => console.error("Drift history error:", err));
+}
+
+// =============================
+// STEP-6: PERFORMANCE HISTORY
+// =============================
+function loadPerformanceHistory() {
+    fetch(`${API_BASE}/history/performance`)
+        .then(res => res.json())
+        .then(data => {
+            Plotly.newPlot("performance-history-chart", [
+                {
+                    x: data.map(d => d.timestamp),
+                    y: data.map(d => d.accuracy),
+                    name: "Accuracy",
+                    mode: "lines"
+                },
+                {
+                    x: data.map(d => d.timestamp),
+                    y: data.map(d => d.f1),
+                    name: "F1 Score",
+                    mode: "lines"
+                }
+            ], {
+                title: "Model Performance Over Time"
+            });
+        })
+        .catch(err => console.error("Performance history error:", err));
+}
+
+// =============================
+// STEP-6: RETRAINING HISTORY
+// =============================
+function loadRetrainingHistory() {
+    fetch(`${API_BASE}/history/retraining`)
+        .then(res => res.json())
+        .then(data => {
+            Plotly.newPlot("retraining-history-chart", [{
+                x: data.map(d => d.timestamp),
+                y: data.map(() => 1),
+                mode: "markers",
+                marker: { size: 14 },
+                text: data.map(d => d.reason),
+                hoverinfo: "text"
+            }], {
+                title: "Retraining & Policy Actions",
+                yaxis: { visible: false }
+            });
+        })
+        .catch(err => console.error("Retraining history error:", err));
 }
