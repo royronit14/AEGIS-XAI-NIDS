@@ -1,0 +1,11 @@
+schema_version: v1
+
+features:
+  flow_duration: float
+  src_bytes: int
+  dst_bytes: int
+  protocol: category
+
+label:
+  name: "__label__"
+  type: binary
