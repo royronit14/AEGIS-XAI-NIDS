@@ -1,0 +1,80 @@
+[
+  {
+    "dataset": "UNSW-NB15",
+    "model": "RandomForest_v1",
+    "timestamp": "2026-01-28T18:56:16.185309",
+    "f1": 0.9510011912190142
+  },
+  {
+    "dataset": "CICIDS2017",
+    "model": "RandomForest_v1",
+    "timestamp": "2026-01-28T19:14:51.738516",
+    "f1": 0.5752093969530233
+  },
+  {
+    "dataset": "CICIDS2017",
+    "model": "RandomForest_v1",
+    "timestamp": "2026-01-28T19:27:06.776481",
+    "f1": 0.5752093969530233
+  },
+  {
+    "dataset": "UNSWNB15_LightGbm",
+    "model": "RandomForest_v1",
+    "timestamp": "2026-01-29T18:17:57.362855",
+    "f1": 0.9510011912190142
+  },
+  {
+    "dataset": "UNSWNB15",
+    "model": "RandomForest_v1",
+    "timestamp": "2026-01-29T18:19:05.798170",
+    "f1": 0.9510011912190142
+  },
+  {
+    "dataset": "UNSWNB15",
+    "model": "RandomForest_v1",
+    "timestamp": "2026-01-29T18:19:09.056454",
+    "f1": 0.9510011912190142
+  },
+  {
+    "dataset": "UNSWNB15",
+    "model": "RandomForest_v1",
+    "timestamp": "2026-01-29T18:19:21.516642",
+    "f1": 0.9510011912190142
+  },
+  {
+    "dataset": "UNSWNB15",
+    "model": "RandomForest_v1",
+    "timestamp": "2026-01-31T12:51:53.223429",
+    "f1": 0.5752093969530233
+  },
+  {
+    "dataset": "CICIDS2017",
+    "model": "LightGBM_v1",
+    "timestamp": "2026-01-31T12:53:42.372889",
+    "f1": 0.5271042308401127
+  },
+  {
+    "dataset": "CICIDS2017",
+    "model": "RandomForest_v1",
+    "timestamp": "2026-01-31T12:58:33.359092",
+    "f1": 0.5752093969530233
+  },
+  {
+    "dataset": "UNSWNB15",
+    "model": "RandomForest_v1",
+    "timestamp": "2026-01-31T13:01:30.003228",
+    "f1": 0.9510011912190142
+  },
+  {
+    "dataset": "UNSWNB15",
+    "model": "LightGBM_v1",
+    "timestamp": "2026-01-31T13:01:33.573213",
+    "f1": 0.9374477034758814
+  },
+  {
+    "dataset": "UNSWNB15",
+    "model": "LightGBM_v1",
+    "timestamp": "2026-01-31T13:17:01.429077",
+    "f1": 0.9374477034758814
+  }
+]
